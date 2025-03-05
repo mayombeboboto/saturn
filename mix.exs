@@ -1,10 +1,12 @@
 defmodule Saturn.MixProject do
   use Mix.Project
 
+  @version "0.1.1"
+
   def project do
     [
       app: :saturn,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -88,8 +90,15 @@ defmodule Saturn.MixProject do
     [
       saturn: [
         include_executables_for: [:unix],
-        applications: [runtime_tools: :permanent]
+        applications: [runtime_tools: :permanent],
+        version: @version <> "+" <> git_rev()
       ]
     ]
+  end
+
+  defp git_rev do
+    System.cmd("git", ["rev-parse", "--short", "HEAD"])
+    |> elem(0)
+    |> String.trim_trailing()
   end
 end
