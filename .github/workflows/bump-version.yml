@@ -19,5 +19,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_BRANCHES: main
           DEFAULT_BUMP: none
-          INITIAL_VERSION: 0.0.0
+          INITIAL_VERSION: 0.1.1
           WITH_V: true
